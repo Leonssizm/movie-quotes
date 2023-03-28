@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('landing');
-});
+Route::view('/', 'landing');
+
+Route::view('/movie/{movie:id}', 'movie');
+
+Route::view('/admin', 'admin-login');
