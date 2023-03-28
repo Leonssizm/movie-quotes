@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'landing');
+Route::get('/', [MovieController::class, 'index'])->name('movies.get');
+Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('movie.get');
 
-Route::view('/movie/{movie:id}', 'movie');
-
+// TODO refactor after the creation of AdminController
 Route::view('/admin', 'admin-login');

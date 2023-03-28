@@ -1,7 +1,7 @@
 <x-layout>
     <x-language/>
 <div class="grow flex items-center justify-center flex-col">
-    <form method="POST" action="/admin" enctype="multipart/form-data">
+    <form method="POST" action="{{route('admin/login')}}" enctype="multipart/form-data">
         @csrf
         <div class="mb-6">
             <label for="email" class="text-white block mb-2 uppercase font-bold text-xs text-gray-700">
