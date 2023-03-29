@@ -1,4 +1,6 @@
     <x-layout>
-            <x-language/>
-            <x-movie-card/>
+        <x-language/>
+        @foreach($movie as $film)
+        <x-movie-card :film="$film"/>
+        @endforeach
     </x-layout>

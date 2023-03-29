@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Quote extends Model
 {
 	use HasFactory;
 
-	public function quotes()
+	public function movie()
 	{
-		return $this->hasMany(Quote::class);
+		return $this->belongsTo(Movie::class);
 	}
 }
