@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MovieController::class, 'index'])->name('movies.get');
+Route::get('/', [MovieController::class, 'index'])->name('movies');
 Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('movie');
 
 // TODO refactor after the creation of AdminController
