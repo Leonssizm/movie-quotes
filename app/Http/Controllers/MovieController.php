@@ -9,21 +9,15 @@ class MovieController extends Controller
 	public function index()
 	{
 		return view('landing', [
-			'movie'     => $this->generateRandomMovie(),
+			'movie'     => Movie::all()->random(),
 		]);
 	}
 
-	public function show()
+	public function show(Movie $movie)
 	{
-		return view('movie');
-		// Will display single movie
-	}
-
-	private function generateRandomMovie()
-	{
-		$movie = Movie::all()->filter(function ($movie) {
-			return $movie->id === rand(1, Movie::all()->count());
-		});
-		return $movie;
+		return view('movie', [
+			'movie' => $movie,
+			'quotes'=> $movie->quotes,
+		]);
 	}
 }
