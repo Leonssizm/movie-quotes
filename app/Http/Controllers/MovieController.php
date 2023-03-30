@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+
 class MovieController extends Controller
 {
 	public function index()
 	{
-		return view('landing');
-		// Will display all movies
+		return view('landing', [
+			'movie'     => Movie::all()->random(),
+		]);
 	}
 
-	public function show()
+	public function show(Movie $movie)
 	{
-		return view('movie');
-		// Will display single movie
+		return view('movie', [
+			'movie' => $movie,
+			'quotes'=> $movie->quotes,
+		]);
 	}
 }
