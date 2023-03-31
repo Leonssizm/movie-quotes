@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// TODO group similar routes together
 Route::get('/', [MovieController::class, 'index'])->name('movies');
-Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('movie.get');
+Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movie');
 
 // TODO refactor after the creation of AdminController
-Route::view('/admin', 'admin-login');
+Route::get('/register', [AdminController::class, 'index'])->name('register');
+Route::post('/register', [AdminController::class, 'store'])->name('register');
+Route::get('admin/create', [AdminController::class, 'show'])->name('admin.show');

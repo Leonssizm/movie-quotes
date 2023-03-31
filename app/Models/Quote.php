@@ -10,6 +10,8 @@ class Quote extends Model
 {
 	use HasFactory;
 
+	protected $fillable = ['body'];
+
 	public function movie(): BelongsTo
 	{
 		return $this->belongsTo(Movie::class);

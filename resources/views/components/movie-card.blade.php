@@ -8,6 +8,6 @@
         <h1 class="text-xl text-white">{{$movie->quotes->first()->body}}</h1>
     </div>
     <div class="mt-28">
-        <a class="text-xl text-white underline" href="/movie/{{$movie->id}}">{{$movie->title}}</a>
+        <a class="text-xl text-white underline" href="{{route('movie', $movie)}}">{{$movie->title}}</a>
     </div>
 </div>
