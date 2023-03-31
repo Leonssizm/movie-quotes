@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// TODO group similar routes together
-Route::get('/', [MovieController::class, 'index'])->name('movies');
-Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movie');
+Route::controller(MovieController::class)->group(function () {
+	Route::get('/', 'index')->name('movies');
+	Route::get('movies/{movie}', 'show')->name('movie');
+});
 
-// TODO refactor after the creation of AdminController
-Route::get('/register', [AdminController::class, 'index'])->name('register');
-Route::post('/register', [AdminController::class, 'store'])->name('register');
-Route::get('admin/create', [AdminController::class, 'show'])->name('admin.show');
+// Login
+
+Route::controller(SessionsController::class)->group(function () {
+	Route::get('login', 'create')->name('login.create')->middleware('guest');
+	Route::post('login', 'store')->name('login.store')->middleware('guest');
+	Route::get('admin', 'show')->name('admin')->middleware('auth');
+	Route::post('logout', 'destroy')->name('logout')->middleware('auth');
+});
