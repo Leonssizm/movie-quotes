@@ -2,7 +2,11 @@
 <div class="grow flex items-center justify-center flex-col">
 
     <div class="rounded-md">
-        <img width="700" height="386" src="{{ URL::to('/') }}/images/movie-image.jpg" alt="Movie-thumbnail">
+        @if($movie->thumbnail == null)
+        <img width="700" height="386" src="{{ URL::to('/') }}/storage/images/movie-image.jpg" alt="Movie-thumbnail">
+        @else
+        <img width="700" height="386" src="{{ URL::to('/') }}/storage/images/{{$movie->thumbnail}}" alt="Movie-thumbnail">
+        @endif
     </div>
     <div class="mt-16">
         <h1 class="text-xl text-white">{{$movie->quotes->first()->body}}</h1>

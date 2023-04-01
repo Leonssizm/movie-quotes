@@ -15,14 +15,10 @@ class SessionsController extends Controller
 
 	public function store()
 	{
-		$attributes = request()->validate([
+		request()->validate([
 			'email'    => 'required|exists:users,email',
 			'password' => 'required',
 		]);
-		// if authentication is successful, attempt will check it
-		// throw ValidationException::withMessages([
-		// 	'email' => 'Your provided credentials could not be verified.',
-		// ]);
 
 		$user = User::all()->where('email', request()->email)->first();
 

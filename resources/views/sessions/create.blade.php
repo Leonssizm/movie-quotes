@@ -2,15 +2,15 @@
     <x-language/>
     <div class="ml-1 flex justify-center grow">
     <section class="px-6 py-8">
-        <main class="max-w-lg mx-auto mt-10 bg-gray-200 p-6 rounded">
-            <h1 class="text-center font-bold text-xl text-white">Log In</h1>
+        <main class="max-w-lg mx-auto mt-10 bg-gray-400 p-6 rounded">
+            <h1 class="text-center font-bold text-xl">Log In</h1>
             <form method="POST" action="{{route('login.store')}}">
                 @csrf
                 <div class="mb-6 mt-5">
-                    <label for="email" class="block mb-2 uppercase font-bold text-xs text-white">
+                    <label for="email" class="block mb-2 uppercase font-bold text-xs ">
                         Email
                     </label>
-                    <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
+                    <input class="border border-gray-400 p-2 w-full rounded bg-teal-100"
                     type="email"
                     name="email"
                     id="userEmail"
@@ -22,10 +22,10 @@
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label for="password" class="block mb-2 uppercase font-bold text-xs text-white">
+                    <label for="password" class="block mb-2 uppercase font-bold text-xs">
                         Password
                     </label>
-                    <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
+                    <input class="border border-gray-400 p-2 w-full rounded bg-teal-100"
                     type="password"
                     name="password"
                     id="password"

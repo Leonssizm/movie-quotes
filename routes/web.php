@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::controller(MovieController::class)->group(function () {
 	Route::get('/', 'index')->name('movies');
 	Route::get('movies/{movie}', 'show')->name('movie');
+	// Route::get('movie/{movie}/edit', 'edit')->name('movie.edit')->middleware('auth');
+	Route::get('movie/create', 'create')->name('movie.create')->middleware('auth');
+	Route::post('movie/store', 'store')->name('movie.store')->middleware('auth');
+	Route::delete('movie/{movie}/delete', 'destroy')->name('movie.destroy')->middleware('auth');
 });
-
-// Login
 
 Route::controller(SessionsController::class)->group(function () {
 	Route::get('login', 'create')->name('login.create')->middleware('guest');
