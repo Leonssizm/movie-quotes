@@ -42,9 +42,9 @@
                 @endforeach
                 </td>
                 <td class="px-6 py-4">
-                    {{-- <form method="PUT" action="{{route('movie.edit', $movie->id)}}">
+                    <form method="PUT" action="{{route('movie.edit', $movie->id)}}">
                         <button type="submit" class="text-green-700">Edit</button>
-                    </form> --}}
+                    </form>
                 </td>
                 <td class="px-6 py-4">
                     <form action="{{route('movie.destroy', $movie->id)}}" method="post">
