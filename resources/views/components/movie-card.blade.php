@@ -9,7 +9,7 @@
         @endif
     </div>
     <div class="mt-16">
-        <h1 class="text-xl text-white">{{$movie->quotes->first()->body}}</h1>
+        <h1 class="text-xl text-white">{{$movie->quotes->random()->body}}</h1>
     </div>
     <div class="mt-28">
         <a class="text-xl text-white underline" href="{{route('movie', $movie)}}">{{$movie->title}}</a>
