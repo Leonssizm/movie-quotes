@@ -37,10 +37,6 @@ class QuoteController extends Controller
 
 	public function update(Movie $movie, UpdateQuoteRequest $request)
 	{
-		if ($request->has('thumbnail'))
-		{
-			dd($request);
-		}
 		$queryString = explode('/', request()->url());
 		$quoteId = array_pop($queryString);
 		$movie->quotes->where('id', $quoteId)->first()->update($request->validated());
