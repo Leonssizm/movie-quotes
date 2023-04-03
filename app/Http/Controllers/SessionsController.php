@@ -22,7 +22,7 @@ class SessionsController extends Controller
 
 		auth()->login($user);
 
-		return redirect()->route('admin');
+		return redirect('/admin');
 	}
 
 	public function show()

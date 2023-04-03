@@ -23,7 +23,6 @@ class StoreMovieRequest extends FormRequest
 	{
 		return [
 			'title'     => 'required',
-			'thumbnail' => 'required|image',
 		];
 	}
 }

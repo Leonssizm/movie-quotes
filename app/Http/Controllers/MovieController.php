@@ -3,19 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMovieRequest;
-use App\Http\Requests\StoreQuoteRequest;
+use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Movie;
-use App\Models\Quote;
 
 class MovieController extends Controller
 {
 	public function index()
 	{
 		$randomMovie = Movie::all()->random();
+		$randomQuote = '';
+		if ($randomMovie->quotes->count() == 0)
+		{
+			$randomQuote = 'This Movie Has No Quotes Yet';
+		}
+		else
+		{
+			$randomQuote = $randomMovie->quotes->random();
+		}
 
 		return view('landing', [
 			'movie'     => $randomMovie,
-			'quote'     => $randomMovie->quotes->random(),
+			'quote'     => $randomQuote,
 		]);
 	}
 
@@ -27,22 +35,24 @@ class MovieController extends Controller
 		]);
 	}
 
-	public function create()
+	public function edit(Movie $movie)
 	{
-		return view('admin.create');
+		return view('admin.edit', [
+			'movie' => $movie,
+		]);
 	}
 
-	public function store(StoreMovieRequest $movieRequest, StoreQuoteRequest $quoteRequest)
+	public function update(Movie $movie, UpdateMovieRequest $request)
 	{
-		$movie_attr = $movieRequest->validated();
-		$movie_attr['thumbnail'] = $this->storeImage($movieRequest);
-		$movie_attr['user_id'] = auth()->id();
-		Movie::create($movie_attr);
+		$movie->update($request->validated());
+		return back();
+	}
 
-		$quote_attr = $quoteRequest->validated();
-		$quote_attr['movie_id'] = Movie::all()->last()->id;
-		Quote::create($quote_attr);
-
+	public function store(StoreMovieRequest $request)
+	{
+		$attributes = $request->validated();
+		$attributes['user_id'] = auth()->id();
+		Movie::create($attributes);
 		return redirect('/admin');
 	}
 
@@ -50,12 +60,5 @@ class MovieController extends Controller
 	{
 		$movie->delete();
 		return back();
-	}
-
-	private function storeImage($request)
-	{
-		$storedImage = uniqid() . '-' . $request->title . '.' . $request->thumbnail->extension();
-		$request->thumbnail->move('storage/images', $storedImage);
-		return $storedImage;
 	}
 }
