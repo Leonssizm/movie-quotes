@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\StoreQuoteRequest;
 use App\Models\Movie;
 use App\Models\Quote;
 
@@ -9,8 +11,11 @@ class MovieController extends Controller
 {
 	public function index()
 	{
+		$randomMovie = Movie::all()->random();
+
 		return view('landing', [
-			'movie'     => Movie::all()->random(),
+			'movie'     => $randomMovie,
+			'quote'     => $randomMovie->quotes->random(),
 		]);
 	}
 
@@ -27,18 +32,14 @@ class MovieController extends Controller
 		return view('admin.create');
 	}
 
-	public function store()
+	public function store(StoreMovieRequest $movieRequest, StoreQuoteRequest $quoteRequest)
 	{
-		$movie_attr = request()->validate([
-			'title'     => ['required'],
-		]);
-		$movie_attr['thumbnail'] = $this->storeImage(request());
+		$movie_attr = $movieRequest->validated();
+		$movie_attr['thumbnail'] = $this->storeImage($movieRequest);
 		$movie_attr['user_id'] = auth()->id();
 		Movie::create($movie_attr);
 
-		$quote_attr = request()->validate([
-			'body'     => ['required'],
-		]);
+		$quote_attr = $quoteRequest->validated();
 		$quote_attr['movie_id'] = Movie::all()->last()->id;
 		Quote::create($quote_attr);
 

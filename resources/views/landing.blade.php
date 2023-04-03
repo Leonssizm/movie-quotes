@@ -1,4 +1,4 @@
     <x-layout>
         <x-language/>
-        <x-movie-card :movie="$movie"/>
+        <x-movie-card :movie="$movie" :quote="$quote"/>
     </x-layout>
