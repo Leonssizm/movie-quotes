@@ -6,15 +6,16 @@ use App\Http\Requests\StoreSessionRequest;
 use App\Models\Movie;
 use App\Models\Quote;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
-class SessionsController extends Controller
+class AuthController extends Controller
 {
 	public function create()
 	{
 		return view('sessions.create');
 	}
 
-	public function store(StoreSessionRequest $request)
+	public function store(StoreSessionRequest $request): RedirectResponse
 	{
 		$request->validated();
 

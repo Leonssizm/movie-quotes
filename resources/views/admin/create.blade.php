@@ -20,34 +20,6 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
-
-                    <div class="mb-6 mt-5">
-                        <label for="thumbnail" class="block mb-2 uppercase font-bold text-xs">
-                            Thumbnail
-                        </label>
-                        <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
-                        type="file"
-                        name="thumbnail"
-                        id="thumbnail"
-                        >
-                        @error('thumbnail')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-6 mt-5">
-                        <label for="body" class="block mb-2 uppercase font-bold text-xs">
-                            Quote
-                        </label>
-                        <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
-                        type="text"
-                        name="body"
-                        id="body"
-                        >
-                        @error('body')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
-                    </div>
                     
                     <div class="mb-6">
                         <button type="submit"

@@ -1,12 +1,12 @@
 <x-layout>
     <x-language/>
-    
+
     <div class="text-white ml-1">
         {{-- For Testing --}}
     <div class="flex justify-between mb-1">
         <form method="POST" action="{{route('logout')}}">
             @csrf
-            <button class="bg-red-400 text-white rounded py-2 px-4 hover:bg-red-500">Log Out</button>
+            <button class="bg-red-400 text-white rounded py-2 px-4 hover:bg-red-500">{{__('login.log_out')}}</button>
         </form>
         <a class="bg-green-400 text-white rounded py-2 px-4 hover:bg-green-500"href="{{route('movie.create')}}">Create Movie</a>
         <a class="bg-green-400 text-white rounded py-2 px-4 hover:bg-green-500"href="{{route('quote.create')}}">Add Quote to a Movie</a>
@@ -17,16 +17,16 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Movie name
+                    {{__('table.movie_name')}}
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Quotes
+                    {{__('table.quotes')}}
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Edit
+                    {{__('table.edit')}}
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Delete
+                    {{__('table.delete')}}
                 </th>
             </tr>
         </thead>
@@ -43,12 +43,12 @@
                 </td>
                 <td class="px-6 py-4">
                     <form method="PUT" action="{{route('movie.edit', $movie->id)}}">
-                        <button type="submit" class="text-green-700">Edit</button>
+                        <button type="submit" class="text-green-700">{{__('table.edit')}}</button>
                     </form>
                 </td>
                 <td class="px-6 py-4">
                     <form action="{{route('movie.destroy', $movie->id)}}" method="post">
-                        <button type="submit" class="text-red-700">Delete</button>
+                        <button type="submit" class="text-red-700">{{__('table.delete')}}</button>
                         @method('DELETE')
                         @csrf
                     </form>
