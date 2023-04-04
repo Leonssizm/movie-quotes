@@ -8,8 +8,8 @@
             @csrf
             <button class="bg-red-400 text-white rounded py-2 px-4 hover:bg-red-500">{{__('login.log_out')}}</button>
         </form>
-        <a class="bg-green-400 text-white rounded py-2 px-4 hover:bg-green-500"href="{{route('movie.create')}}">Create Movie</a>
-        <a class="bg-green-400 text-white rounded py-2 px-4 hover:bg-green-500"href="{{route('quote.create')}}">Add Quote to a Movie</a>
+        <a class="bg-green-400 text-white rounded py-2 px-4 hover:bg-green-500"href="{{route('movie.create')}}">{{__('table.create_movie')}}</a>
+        <a class="bg-green-400 text-white rounded py-2 px-4 hover:bg-green-500"href="{{route('quote.create')}}">{{__('table.add_quote_to_movie')}}</a>
         {{--  --}}
     </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

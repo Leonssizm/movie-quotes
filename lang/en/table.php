@@ -11,8 +11,18 @@ return [
 	| these language lines according to your application's requirements.
 	|
 	*/
-	'movie_name' => 'Movie Name',
-	'quotes'     => 'Quote',
-	'edit'       => 'edit',
-	'delete'     => 'delete',
+	'movie_name'         => 'Movie Name',
+	'quotes'             => 'Quote',
+	'edit'               => 'edit',
+	'delete'             => 'delete',
+	'create_movie'       => 'Create Movie',
+	'movie_title'        => 'Movie Title',
+	'add_quote_to_movie' => 'Add Quote to a Movie',
+	'create_quote'       => 'Create Quote',
+	'submit'             => 'Submit',
+	'quote_text'         => 'quote text',
+	'thumbnail'          => 'Thumbnail',
+	'pick_movie'         => 'Pick a Movie',
+	'edit_movie_quotes'  => 'edit movie & quotes',
+	'save'               => 'დამახსოვრება',
 ];

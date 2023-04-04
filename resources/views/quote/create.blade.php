@@ -4,12 +4,12 @@
     <div class="ml-1 flex justify-center grow">
         <section class="px-6 py-8">
             <main class="max-w-lg mx-auto mt-10 bg-gray-400 p-6 rounded">
-                <h1 class="text-center font-bold text-xl">Create Quote</h1>
+                <h1 class="text-center font-bold text-xl">{{__('table.create_quote')}}</h1>
                 <form method="POST" action="{{route('quote.store')}}" enctype="multipart/form-data">
                    @csrf
                     <div class="mb-6 mt-5">
                         <label for="body" class="block mb-2 uppercase font-bold text-xs">
-                           Quote Text
+                            {{__('table.quote_text')}}
                         </label>
                         <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
                         type="text"
@@ -23,7 +23,7 @@
 
                     <div class="mb-6 mt-5">
                         <label for="thumbnail" class="block mb-2 uppercase font-bold text-xs">
-                            Thumbnail
+                            {{__('table.thumbnail')}}
                         </label>
                         <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
                         type="file"
@@ -37,7 +37,7 @@
 
                     <div class="mb-6">
                         <label for="movie_id" class="block mb-2 uppercase font-bold text-xs text-gray-700">
-                            Pick a Movie
+                            {{__('table.pick_movie')}}
                         </label>
                         <select name="movie_id" class="w-80 h-10">
                             @foreach($movies as $movie)
@@ -54,7 +54,7 @@
                         <button type="submit"
                         class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                         >
-                        Submit
+                        {{__('table.submit')}}
                         </button>    
                     </div>
                     
