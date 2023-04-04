@@ -26,20 +26,16 @@ class QuoteController extends Controller
 		return redirect('admin');
 	}
 
-	public function destroy(Movie $movie)
+	public function destroy(Quote $quote)
 	{
-		$queryString = explode('/', request()->url());
-		$quoteId = array_pop($queryString);
-		$movie->quotes->where('id', $quoteId)->first()->delete();
+		$quote->delete();
 
 		return back();
 	}
 
-	public function update(Movie $movie, UpdateQuoteRequest $request)
+	public function update(Quote $quote, UpdateQuoteRequest $request)
 	{
-		$queryString = explode('/', request()->url());
-		$quoteId = array_pop($queryString);
-		$movie->quotes->where('id', $quoteId)->first()->update($request->validated());
+		$quote->update($request->validated());
 
 		return back();
 	}

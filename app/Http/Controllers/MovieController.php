@@ -5,25 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Movie;
+use App\Models\Quote;
 
 class MovieController extends Controller
 {
 	public function index()
 	{
-		$randomMovie = Movie::all()->random();
-		$randomQuote = '';
-		if ($randomMovie->quotes->count() == 0)
-		{
-			$randomQuote = 'This Movie Has No Quotes Yet';
-		}
-		else
-		{
-			$randomQuote = $randomMovie->quotes->random();
-		}
-
+		$quote = Quote::with('movie')->get();
 		return view('landing', [
-			'movie'     => $randomMovie,
-			'quote'     => $randomQuote,
+			'quote'     => $quote->random(),
 		]);
 	}
 

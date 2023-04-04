@@ -49,7 +49,7 @@
 
                     @foreach($movie->quotes as $key => $quote)
                     <div class="flex flex-row-reverse">
-                        <form action="{{route('quote.update', ['movie' => $quote->movie_id, 'quote' => $quote->id])}}" method="post" class="flex">
+                        <form action="{{route('quote.update', $quote->id)}}" method="post" class="flex">
                             <input id="{{$quote->id}}"
                             class="border border-gray-400 p-2 w-full rounded bg-teal-200" 
                             value="{{$quote->body}}"
@@ -62,7 +62,7 @@
                             @method('PUT')
                             @csrf
                         </form>
-                        <form action="{{route('quote.destroy', ['movie' => $quote->movie_id, 'quote' => $quote->id])}}" method="post" class="flex items-end w-1 h-1 mt-7 mr-12">
+                        <form action="{{route('quote.destroy', $quote->id)}}" method="post" class="flex items-end w-1 h-1 mt-7 mr-12">
                             <input id="{{$quote->id}}"
                             class="border border-gray-400 p-2 w-full rounded bg-teal-200" 
                             value="{{$quote->body}}"

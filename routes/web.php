@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\QuoteController;
-use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/change.locale/{locale}', [LanguageController::class, 'change'])->name('locale.change');
 
 Route::controller(MovieController::class)->group(function () {
 	Route::get('/', 'index')->name('movies');
@@ -29,11 +32,11 @@ Route::controller(MovieController::class)->group(function () {
 Route::controller(QuoteController::class)->group(function () {
 	Route::get('quote/create', 'create')->name('quote.create')->middleware('auth');
 	Route::post('quote/store', 'store')->name('quote.store')->middleware('auth');
-	Route::put('movie/{movie}/quote/{quote}', 'update')->name('quote.update')->middleware('auth');
-	Route::delete('movie/{movie}/quote/{quote}', 'destroy')->name('quote.destroy')->middleware('auth');
+	Route::put('quote/{quote}/update', 'update')->name('quote.update')->middleware('auth');
+	Route::delete('quote/{quote}/delete', 'destroy')->name('quote.destroy')->middleware('auth');
 });
 
-Route::controller(SessionsController::class)->group(function () {
+Route::controller(AuthController::class)->group(function () {
 	Route::get('login', 'create')->name('login.create')->middleware('guest');
 	Route::post('login', 'store')->name('login.store')->middleware('guest');
 	Route::get('admin', 'show')->name('admin')->middleware('auth');
