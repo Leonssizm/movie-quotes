@@ -8,16 +8,22 @@
                     @method('PUT')
                     @csrf
                     <div class="mb-6 mt-5">
+                        @if(App::getLocale() == 'en')
                         <label for="title" class="block mb-2 uppercase font-bold text-xs">
-                            {{__('table.movie_title')}}
+                            {{__('table.movie_title_en')}}
                         </label>
+                        @else
+                        <label for="title" class="block mb-2 uppercase font-bold text-xs">
+                            {{__('table.movie_title_ka')}}
+                        </label>
+                        @endif
                         <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
                         type="text"
                         name="title"
                         id="title"
                         value="{{$movie->title}}"
                         >
-                        @error('movie')
+                        @error('title')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
@@ -28,18 +34,6 @@
                         {{__('table.save')}}
                         </button>
                     </div>
-    
-                    @if($errors->any())
-    
-                    @foreach($errors->all() as $error)
-    
-                    <ul class="text-red-500 text-xs">
-                        <li>{{$error}}</li>
-                    </ul>
-    
-                    
-                    @endforeach
-                    @endif
                 </form>
 
                 <div class="mb-6 mt-5">

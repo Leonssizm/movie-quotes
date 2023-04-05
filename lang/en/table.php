@@ -26,5 +26,5 @@ return [
 	'thumbnail'                => 'Thumbnail',
 	'pick_movie'               => 'Pick a Movie',
 	'edit_movie_quotes'        => 'edit movie & quotes',
-	'save'                     => 'დამახსოვრება',
+	'save'                     => 'Save',
 ];
