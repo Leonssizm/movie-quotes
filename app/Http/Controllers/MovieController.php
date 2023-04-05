@@ -40,9 +40,11 @@ class MovieController extends Controller
 
 	public function store(StoreMovieRequest $request)
 	{
-		$attributes = $request->validated();
-		$attributes['user_id'] = auth()->id();
-		Movie::create($attributes);
+		$movie = new Movie();
+		$movie['user_id'] = auth()->id();
+		$movie->setTranslation('title', 'en', $request->title_en);
+		$movie->setTranslation('title', 'ka', $request->title_ka);
+		$movie->save();
 		return redirect('/admin');
 	}
 

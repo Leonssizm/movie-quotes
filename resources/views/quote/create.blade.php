@@ -8,15 +8,28 @@
                 <form method="POST" action="{{route('quote.store')}}" enctype="multipart/form-data">
                    @csrf
                     <div class="mb-6 mt-5">
-                        <label for="body" class="block mb-2 uppercase font-bold text-xs">
-                            {{__('table.quote_text')}}
+                        <label for="body_ka" class="block mb-2 uppercase font-bold text-xs">
+                            {{__('table.quote_text_ka')}}
                         </label>
                         <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
                         type="text"
-                        name="body"
+                        name="body_ka"
                         id="body"
                         >
-                        @error('body')
+                        @error('body_ka')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-6 mt-5">
+                        <label for="body_en" class="block mb-2 uppercase font-bold text-xs">
+                            {{__('table.quote_text_en')}}
+                        </label>
+                        <input class="border border-gray-400 p-2 w-full rounded bg-teal-200"
+                        type="text"
+                        name="body_en"
+                        id="body"
+                        >
+                        @error('body_en')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
@@ -44,10 +57,7 @@
                             <option value="{{$movie->id}}">{{$movie->title}}</option>
                             @endforeach
                         </select>
-        
-                        @error('movie_id')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
+
                     </div>
                     
                     <div class="mb-6">
@@ -58,16 +68,6 @@
                         </button>    
                     </div>
                     
-    
-                    @if($errors->any())
-    
-                    @foreach($errors->all() as $error)
-    
-                    <ul class="text-red-500 text-xs">
-                        <li>{{$error}}</li>
-                    </ul>
-                    @endforeach
-                    @endif
                 </form>
             </main>
         </section>

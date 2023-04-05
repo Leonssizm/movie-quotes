@@ -1,5 +1,6 @@
 <x-layout>
     <x-language/>
+    
     <div class="grow flex items-center justify-center flex-col">
         <h1 class="text-3xl text-white">{{$movie->title}}</h1>
         @foreach($movie->quotes as $quote)

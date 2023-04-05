@@ -18,10 +18,12 @@ class QuoteController extends Controller
 
 	public function store(StoreQuoteRequest $request)
 	{
-		$quote = $request->validated();
+		$quote = new Quote();
 		$quote['thumbnail'] = $this->storeImage($request);
 		$quote['movie_id'] = $request->movie_id;
-		Quote::create($quote);
+		$quote->setTranslation('body', 'en', $request->body_en);
+		$quote->setTranslation('body', 'ka', $request->body_ka);
+		$quote->save();
 
 		return redirect('admin');
 	}

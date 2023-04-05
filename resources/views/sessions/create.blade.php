@@ -45,17 +45,6 @@
 
                 </div>
 
-                @if($errors->any())
-
-                @foreach($errors->all() as $error)
-
-                <ul class="text-red-500 text-xs">
-                    <li>{{$error}}</li>
-                </ul>
-
-                @endforeach
-
-                @endif
             </form>
         </main>
     </section>
