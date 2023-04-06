@@ -21,7 +21,7 @@ class QuoteFactory extends Factory
 			'movie_id' => Movie::factory(),
 			'body'     => [
 				'en' => $this->faker->sentence(),
-				'ka' => fake('ka_GE')->name(),
+				'ka' => fake('ka_GE')->realText(),
 			],
 		];
 	}
