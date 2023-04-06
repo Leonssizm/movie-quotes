@@ -13,6 +13,7 @@ Movie Quotes is an App Developed as a Redberry Bootcamp N1 assignment for gettin
 * [Getting Started](#getting-started)
 * [Migrations](#migration)
 * [Development](#development)
+* [Database relations](#database-relations)
 
 
 #
@@ -99,3 +100,32 @@ you can also refresh migrations and seed database at the same time by executing
 ```sh
 php artisan migrate:fresh --seed
 ```
+
+
+#
+### Development
+
+You can run Laravel's built-in development server by executing:
+
+```sh
+  php artisan serve
+```
+
+when working on JS you may run:
+
+```sh
+  npm run dev
+```
+For deploying vite & tailwind styles
+
+#
+### Database Relations
+
+SQL database tables & relations
+
+<br>
+
+[Database Relations](./readme/assets/database-tables.png)
+
+</br>
+
