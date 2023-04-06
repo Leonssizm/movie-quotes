@@ -18,13 +18,8 @@ class QuoteController extends Controller
 
 	public function store(StoreQuoteRequest $request)
 	{
-		$quote = new Quote();
-		$quote['thumbnail'] = $this->storeImage($request);
-		$quote['movie_id'] = $request->movie_id;
-		$quote->setTranslation('body', 'en', $request->body_en);
-		$quote->setTranslation('body', 'ka', $request->body_ka);
-		$quote->save();
-
+		$attributes = $request->validated();
+		Quote::create($attributes + ['movie_id' => $request->movie_id, 'thumbnail' => $request->file('thumbnail')->store('image', 'public')]);
 		return redirect('admin');
 	}
 
@@ -40,12 +35,5 @@ class QuoteController extends Controller
 		$quote->update($request->validated());
 
 		return back();
-	}
-
-	private function storeImage($request)
-	{
-		$storedImage = uniqid() . '-' . $request->body . '.' . $request->thumbnail->extension();
-		$request->thumbnail->move('storage/images', $storedImage);
-		return $storedImage;
 	}
 }
