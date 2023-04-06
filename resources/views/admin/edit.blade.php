@@ -43,7 +43,7 @@
 
                     @foreach($movie->quotes as $key => $quote)
                     <div class="flex flex-row-reverse">
-                        <form action="{{route('quote.update', $quote->id)}}" method="post" class="flex">
+                        <form action="{{route('quote.update', $quote->id)}}" method="post" enctype="multipart/form-data" class="flex mb-5">
                             <input id="{{$quote->id}}"
                             class="border border-gray-400 p-2 w-full rounded bg-teal-200" 
                             value="{{$quote->body}}"
@@ -51,7 +51,12 @@
                             type="text"
                             name="body">
 
-                            
+                            <input id="{{$quote->id}}"
+                            class="border border-gray-400 p-2 w-full rounded bg-teal-200" 
+                            for='thumbnail'
+                            type="file"
+                            name="thumbnail">
+
                             <button type="submit" class="text-green-700">  {{__('table.save')}}</button>
                             @method('PUT')
                             @csrf

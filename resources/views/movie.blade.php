@@ -6,9 +6,9 @@
         @foreach($movie->quotes as $quote)
         <div class="bg-white mt-5">
             @if($quote->thumbnail == null)
-            <img width="700" height="386" src="{{ URL::to('/') }}/storage/images/movie-image.jpg" alt="thumbnail">
+            <img width="700" height="386" src="{{ URL::to('/') }}/storage/no-thumbnail.jpg" alt="thumbnail">
             @else
-            <img width="700" height="386" src="{{ URL::to('/') }}/storage/images/{{$quote->thumbnail}}" alt="thumbnail">
+            <img width="700" height="386" src="{{ URL::to('/') }}/storage/{{$quote->thumbnail}}" alt="thumbnail">
             @endif
             <h2 class="text-2xl py-10 px-5">{{$quote->body}}</h2>
         </div>

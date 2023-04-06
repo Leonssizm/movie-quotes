@@ -2,7 +2,7 @@
 <div class="grow flex items-center justify-center flex-col">
     <div class="rounded-md">
         @if($quote->thumbnail == null)
-        <img width="700" height="386" src="{{ URL::to('/') }}/storage/images/movie-image.jpg" alt="thumbnail">
+        <img width="700" height="386" src="{{ URL::to('/') }}/storage/no-thumbnail.jpg" alt="thumbnail">
         @else
         <img width="700" height="386" src="{{ URL::to('/') }}/storage/{{$quote->thumbnail}}" alt="thumbnail">
         @endif
