@@ -37,8 +37,8 @@ class QuoteController extends Controller
 		if ($request->hasFile('thumbnail'))
 		{
 			File::delete('storage/' . $quote->thumbnail);
+			$quote->thumbnail = $request->file('thumbnail')->store('image', 'public');
 		}
-		$quote->thumbnail = $request->file('thumbnail')->store('image', 'public');
 		$quote->update($request->validated());
 
 		return back();
