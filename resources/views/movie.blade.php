@@ -4,7 +4,7 @@
     <div class="grow flex items-center justify-center flex-col">
         <h1 class="text-3xl text-white">{{$movie->title}}</h1>
         @foreach($movie->quotes as $quote)
-        <div class="bg-white mt-5">
+        <div class="bg-white mt-5 flex items-center flex-col">
             @if($quote->thumbnail == null)
             <img width="700" height="386" src="{{ URL::to('/') }}/storage/no-thumbnail.jpg" alt="thumbnail">
             @else
