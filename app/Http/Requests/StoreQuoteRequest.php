@@ -14,8 +14,17 @@ class StoreQuoteRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'body'      => 'required',
-			'thumbnail' => 'required|image',
+			'body'         => 'required',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+			'body'  => [
+				'en'=> $this->body_en,
+				'ka'=> $this->body_ka,
+			],
+		]);
 	}
 }

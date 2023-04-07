@@ -18,8 +18,11 @@ class MovieFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'title'   => $this->faker->sentence(),
-			'user_id' => User::factory(),
+			'title'   => [
+				'en' => $this->faker->sentence(),
+				'ka' => fake('ka_GE')->realText(10),
+			],
+			'user_id'    => User::factory(),
 		];
 	}
 }
