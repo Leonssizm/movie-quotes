@@ -12,9 +12,23 @@ class MovieController extends Controller
 	public function index()
 	{
 		$quote = Quote::with('movie')->get();
-		return view('landing', [
-			'quote'     => $quote->random(),
-		]);
+
+		if ($quote->count() == 0)
+		{
+			return '
+			<div style="display:flex; justify-content:center;">
+				<h1>
+					No Quotes Yet
+				</h1>
+			</div>
+			';
+		}
+		else
+		{
+			return view('landing', [
+				'quote'     => $quote->random(),
+			]);
+		}
 	}
 
 	public function show(Movie $movie)
