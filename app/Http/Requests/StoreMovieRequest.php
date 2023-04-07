@@ -14,7 +14,17 @@ class StoreMovieRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'title'     => 'required',
+			'title' => 'required',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+			'title'  => [
+				'en'=> $this->title_en,
+				'ka'=> $this->title_ka,
+			],
+		]);
 	}
 }

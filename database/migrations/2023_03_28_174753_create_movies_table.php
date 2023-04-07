@@ -12,7 +12,7 @@ return new class extends Migration {
 	{
 		Schema::create('movies', function (Blueprint $table) {
 			$table->id();
-			$table->text('title');
+			$table->json('title');
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete();
 			$table->timestamps();
 		});

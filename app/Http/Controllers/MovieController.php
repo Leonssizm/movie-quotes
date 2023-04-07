@@ -41,8 +41,7 @@ class MovieController extends Controller
 	public function store(StoreMovieRequest $request)
 	{
 		$attributes = $request->validated();
-		$attributes['user_id'] = auth()->id();
-		Movie::create($attributes);
+		Movie::create($attributes + ['user_id' => auth()->id()]);
 		return redirect('/admin');
 	}
 

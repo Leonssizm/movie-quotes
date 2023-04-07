@@ -51,8 +51,8 @@ class CreateUserCommand extends Command
 		$input = [
 			'name'                  => $name,
 			'email'                 => $email,
-			'password'              => $password,
-			'password_confirmation' => $password_confirmation,
+			'password'              => bcrypt($password),
+			'password_confirmation' => bcrypt($password_confirmation),
 		];
 
 		try
