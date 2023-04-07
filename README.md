@@ -79,8 +79,16 @@ after setting up **.env** file, execute:
 ```sh
 php artisan config:cache
 ```
+in order to cache environment variables.
 
-for caching enviroment variables
+4\. Now execute in the root of you project following:
+```sh
+  php artisan key:generate
+```
+Which generates auth key.
+
+##### Now, you should be good to go!
+
 
 #
 ### Migration
