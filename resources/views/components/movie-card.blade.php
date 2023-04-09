@@ -2,9 +2,9 @@
 <div class="grow flex items-center justify-center flex-col">
     <div class="rounded-md">
         @if($quote->thumbnail == null)
-        <img width="700" height="386" src="{{ URL::to('/') }}/storage/no-thumbnail.jpg" alt="thumbnail">
+        <img width="700" height="386" src="{{ URL::to('/') }}/assets/images/no-thumbnail.jpg" alt="thumbnail">
         @else
-        <img width="700" height="386" src="{{ URL::to('/') }}/storage/{{$quote->thumbnail}}" alt="thumbnail">
+        <img width="700" height="386" src="{{ URL::to('/') }}/assets/images/{{$quote->thumbnail}}" alt="thumbnail">
         @endif
     </div>
     <div class="mt-16">
