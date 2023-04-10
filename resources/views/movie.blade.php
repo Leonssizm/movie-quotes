@@ -6,7 +6,7 @@
         @foreach($movie->quotes as $quote)
         <div class="bg-white mt-5 flex items-center flex-col">
             @if($quote->thumbnail == null)
-            <img width="700" height="386" src="{{ URL::to('/') }}/storage/no-thumbnail.jpg" alt="thumbnail">
+            <img width="700" height="386" src="{{ URL::to('/') }}/assets/images/no-thumbnail.jpg" alt="thumbnail">
             @else
             <img width="700" height="386" src="{{ URL::to('/') }}/storage/{{$quote->thumbnail}}" alt="thumbnail">
             @endif
