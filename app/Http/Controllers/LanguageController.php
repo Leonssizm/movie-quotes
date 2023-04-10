@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 
 class LanguageController extends Controller
 {
-	public function change($locale): RedirectResponse
+	public function changeLocale($locale): RedirectResponse
 	{
 		if (in_array($locale, config('app.available_locales')))
 		{

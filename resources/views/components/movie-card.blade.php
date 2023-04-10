@@ -1,4 +1,5 @@
 @props(['quote'])
+
 <div class="grow flex items-center justify-center flex-col">
     <div class="rounded-md">
         @if($quote->thumbnail == null)
