@@ -9,7 +9,7 @@
         @endif
     </div>
     <div class="mt-16">
-        <h1 class="text-xl text-white">{{$quote->body}}</h1>
+        <h1 class="text-xl text-white w-80 overflow-y-auto text-center">{{$quote->body}}</h1>
     </div>
     <div class="mt-28">
         <a class="text-xl text-white underline" href="{{route('movie', $quote->movie->id)}}">{{$quote->movie->title}}</a>

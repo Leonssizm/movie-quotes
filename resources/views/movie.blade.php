@@ -10,7 +10,7 @@
             @else
             <img width="700" height="386" src="{{ URL::to('/') }}/storage/{{$quote->thumbnail}}" alt="thumbnail">
             @endif
-            <h2 class="text-2xl py-10 px-5">{{$quote->body}}</h2>
+            <h2 class="text-2xl py-10 px-5 w-96 overflow-y-auto">{{$quote->body}}</h2>
         </div>
         @endforeach
     <div>

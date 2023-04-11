@@ -24,7 +24,7 @@ Route::controller(MovieController::class)->group(function () {
 	Route::get('movies/{movie}', 'show')->name('movie');
 	Route::view('movie/create', ['admin.create'])->name('movie.create')->middleware('auth');
 	Route::get('movie/{movie}/edit', 'edit')->name('movie.edit')->middleware('auth');
-	Route::put('movie/{movie}/update', 'update')->name('movie.update')->middleware('auth');
+	Route::put('movie/{movie}', 'update')->name('movie.update')->middleware('auth');
 	Route::post('movie/store', 'store')->name('movie.store')->middleware('auth');
 	Route::delete('movie/{movie}/delete', 'destroy')->name('movie.destroy')->middleware('auth');
 });
