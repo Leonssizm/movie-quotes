@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Models\Movie;
 use App\Models\Quote;
-use App\Http\Requests\StoreLoginRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +16,9 @@ class AuthController extends Controller
 		return view('sessions.create');
 	}
 
-	public function store(StoreLoginRequest $request): RedirectResponse
+	public function store(LoginRequest $request): RedirectResponse
 	{
-		$credentials = $request->validated();
-
-		if (Auth::attempt($credentials))
+		if (Auth::attempt($request->validated()))
 		{
 			return redirect()->intended(route('admin'));
 		}

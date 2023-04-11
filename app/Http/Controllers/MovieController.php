@@ -13,18 +13,11 @@ class MovieController extends Controller
 {
 	public function index(): View
 	{
-		$quote = Quote::with('movie')->get();
+		$quote = Quote::with('movie')->inRandomOrder()->first();
 
-		if ($quote->count() == 0)
-		{
-			return view('components.no-quotes');
-		}
-		else
-		{
-			return view('landing', [
-				'quote'     => $quote->random(),
-			]);
-		}
+		return view('landing', [
+			'quote'     => $quote,
+		]);
 	}
 
 	public function show(Movie $movie): View

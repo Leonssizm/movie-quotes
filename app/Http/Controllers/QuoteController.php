@@ -21,7 +21,7 @@ class QuoteController extends Controller
 
 	public function store(StoreQuoteRequest $request): RedirectResponse
 	{
-		Quote::create($request->validated() + ['movie_id' => $request->movie_id, 'thumbnail' => $request->file('thumbnail')->store('image', 'public')]);
+		Quote::create($request->validated() + ['thumbnail' => $request->file('thumbnail')->store('image', 'public')]);
 		return redirect()->route('admin');
 	}
 
