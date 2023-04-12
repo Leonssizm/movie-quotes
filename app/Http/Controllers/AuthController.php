@@ -40,6 +40,6 @@ class AuthController extends Controller
 	{
 		auth()->logout();
 
-		return redirect('/');
+		return redirect()->route('movies');
 	}
 }
