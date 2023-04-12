@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMovieRequest;
-use App\Http\Requests\UpdateMovieRequest;
+use App\Http\Requests\Movie\StoreMovieRequest;
+use App\Http\Requests\Movie\UpdateMovieRequest;
 use App\Models\Movie;
 use App\Models\Quote;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class MovieController extends Controller
 {
-	public function index()
+	public function index(): View
 	{
-		$quote = Quote::with('movie')->get();
+		$quote = Quote::with('movie')->inRandomOrder()->first();
+
 		return view('landing', [
-			'quote'     => $quote->random(),
+			'quote'     => $quote,
 		]);
 	}
 
-	public function show(Movie $movie)
+	public function show(Movie $movie): View
 	{
 		return view('movie', [
 			'movie' => $movie,
@@ -25,27 +28,26 @@ class MovieController extends Controller
 		]);
 	}
 
-	public function edit(Movie $movie)
+	public function edit(Movie $movie): View
 	{
 		return view('admin.edit', [
 			'movie' => $movie,
 		]);
 	}
 
-	public function update(Movie $movie, UpdateMovieRequest $request)
+	public function update(UpdateMovieRequest $request, Movie $movie): RedirectResponse
 	{
 		$movie->update($request->validated());
 		return back();
 	}
 
-	public function store(StoreMovieRequest $request)
+	public function store(StoreMovieRequest $request): RedirectResponse
 	{
-		$attributes = $request->validated();
-		Movie::create($attributes + ['user_id' => auth()->id()]);
-		return redirect('/admin');
+		Movie::create($request->validated() + ['user_id' => auth()->id()]);
+		return redirect()->route('admin');
 	}
 
-	public function destroy(Movie $movie)
+	public function destroy(Movie $movie): RedirectResponse
 	{
 		$movie->delete();
 		return back();

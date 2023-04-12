@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Quote;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,6 +15,7 @@ class StoreQuoteRequest extends FormRequest
 	{
 		return [
 			'body'         => 'required',
+			'movie_id'     => 'required',
 		];
 	}
 

@@ -2,42 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSessionRequest;
+use App\Http\Requests\LoginRequest;
 use App\Models\Movie;
 use App\Models\Quote;
-use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-	public function create()
+	public function create(): View
 	{
 		return view('sessions.create');
 	}
 
-	public function store(StoreSessionRequest $request): RedirectResponse
+	public function store(LoginRequest $request): RedirectResponse
 	{
-		$request->validated();
+		if (Auth::attempt($request->validated()))
+		{
+			return redirect()->intended(route('admin'));
+		}
 
-		$user = User::all()->where('email', $request->email)->first();
-
-		auth()->login($user);
-
-		return redirect()->route('admin');
+		return redirect()->back()->withErrors([
+			'failed' => trans('auth.failed'),
+		]);
 	}
 
-	public function show()
+	public function show(): View
 	{
-		return view('admin.panel', [
+		return view('admin.admin-panel', [
 			'movies' => Movie::all(),
 			'quotes' => Quote::all(),
 		]);
 	}
 
-	public function destroy()
+	public function destroy(): RedirectResponse
 	{
 		auth()->logout();
 
-		return redirect('/');
+		return redirect()->route('movies');
 	}
 }

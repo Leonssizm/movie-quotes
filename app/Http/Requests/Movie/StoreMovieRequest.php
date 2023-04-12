@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Movie;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSessionRequest extends FormRequest
+class StoreMovieRequest extends FormRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.
@@ -14,8 +14,17 @@ class StoreSessionRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'email'    => 'required|exists:users,email',
-			'password' => 'required',
+			'title' => 'required',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+			'title'  => [
+				'en'=> $this->title_en,
+				'ka'=> $this->title_ka,
+			],
+		]);
 	}
 }

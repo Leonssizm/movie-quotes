@@ -38,7 +38,7 @@
                 </th>
                 <td class="px-6 py-4">
                 @foreach($movie->quotes as $key => $quote)
-                    <p class="my-1">{{$key+=1}}.{{$quote->body}}</p>
+                    <p class="my-1 w-64 overflow-y-auto">{{$key+=1}}.{{$quote->body}}</p>
                 @endforeach
                 </td>
                 <td class="px-6 py-4">

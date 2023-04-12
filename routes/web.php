@@ -17,28 +17,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/change.locale/{locale}', [LanguageController::class, 'change'])->name('locale.change');
+Route::get('/change.locale/{locale}', [LanguageController::class, 'changeLocale'])->name('locale.change');
 
-Route::controller(MovieController::class)->group(function () {
-	Route::get('/', 'index')->name('movies');
-	Route::view('movie/create', ['admin.create'])->name('movie.create')->middleware('auth');
-	Route::get('movies/{movie}', 'show')->name('movie');
-	Route::get('movie/{movie}/edit', 'edit')->name('movie.edit')->middleware('auth');
-	Route::put('movie/{movie}/update', 'update')->name('movie.update')->middleware('auth');
-	Route::post('movie/store', 'store')->name('movie.store')->middleware('auth');
-	Route::delete('movie/{movie}/delete', 'destroy')->name('movie.destroy')->middleware('auth');
+Route::middleware(['guest'])->group(function () {
+	Route::controller(AuthController::class)->group(function () {
+		Route::get('login', 'create')->name('login.create');
+		Route::post('login', 'store')->name('login.store');
+	});
+	Route::controller(MovieController::class)->group(function () {
+		Route::get('/', 'index')->name('movies')->withoutMiddleware('guest');
+		Route::get('movies/{movie}', 'show')->name('movie')->withoutMiddleware('guest');
+	});
 });
 
-Route::controller(QuoteController::class)->group(function () {
-	Route::get('quote/create', 'create')->name('quote.create')->middleware('auth');
-	Route::post('quote/store', 'store')->name('quote.store')->middleware('auth');
-	Route::put('quote/{quote}/update', 'update')->name('quote.update')->middleware('auth');
-	Route::delete('quote/{quote}/delete', 'destroy')->name('quote.destroy')->middleware('auth');
-});
+Route::middleware(['auth'])->group(function () {
+	Route::controller(MovieController::class)->group(function () {
+		Route::view('movie/create', ['admin.create'])->name('movie.create');
+		Route::get('movie/{movie}/edit', 'edit')->name('movie.edit');
+		Route::put('movie/{movie}', 'update')->name('movie.update');
+		Route::post('movie/store', 'store')->name('movie.store');
+		Route::delete('movie/{movie}/delete', 'destroy')->name('movie.destroy');
+	});
+	Route::controller(QuoteController::class)->group(function () {
+		Route::get('quote/create', 'create')->name('quote.create');
+		Route::post('quote/store', 'store')->name('quote.store');
+		Route::put('quote/{quote}/update', 'update')->name('quote.update');
+		Route::delete('quote/{quote}/delete', 'destroy')->name('quote.destroy');
+	});
 
-Route::controller(AuthController::class)->group(function () {
-	Route::get('login', 'create')->name('login.create')->middleware('guest');
-	Route::post('login', 'store')->name('login.store')->middleware('guest');
-	Route::get('admin', 'show')->name('admin')->middleware('auth');
-	Route::post('logout', 'destroy')->name('logout')->middleware('auth');
+	Route::controller(AuthController::class)->group(function () {
+		Route::get('admin', 'show')->name('admin');
+		Route::post('logout', 'destroy')->name('logout');
+	});
 });
